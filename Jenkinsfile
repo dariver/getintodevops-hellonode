@@ -19,18 +19,7 @@ node {
          * Run a curl inside the newly-build Docker image */
 
         app.inside {
-            sh 'curl http://localhost:8000 || exit 1'
-        }
-    }
-
-    stage('Push image') {
-        /* Finally, we'll push the image with two tags:
-         * First, the incremental build number from Jenkins
-         * Second, the 'latest' tag.
-         * Pushing multiple tags is cheap, as all the layers are reused. */
-        docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
-            app.push("${env.BUILD_NUMBER}")
-            app.push("latest")
+            sh 'curl http://localhost:8001 || exit 1'
         }
     }
 }
